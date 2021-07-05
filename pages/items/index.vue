@@ -2,6 +2,7 @@
 <div>
   <v-badge>{{$store.state.counter}}</v-badge>
   <v-btn color="primary" @click="this.countUp">ボタン</v-btn>
+  <NuxtLink to="/">topへもどる</NuxtLink>
 </div>
 </template>
 
