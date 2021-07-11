@@ -1,6 +1,14 @@
 <template>
   <v-row justify="center" align="center">
     <div>{{$store.state.counter}}</div>
+
+    <div>
+      <ul>
+        <li v-for="(post, index) in posts" :key="index">
+          <a :href="'post.url'" target="_blank" rel="noopener noreferrer">{{ post.title }}</a>
+        </li>
+      </ul>
+    </div>
     <v-col cols="12" sm="8" md="6">
       <v-card class="logo py-4 d-flex justify-center">
         <NuxtLogo />
@@ -76,3 +84,18 @@
     </v-col>
   </v-row>
 </template>
+<script>
+export default {
+  async asyncData({ $axios }) {
+    // 取得先のURL
+    const url = "https://qiita.com/api/v2/items";
+    // リクエスト（Get）
+    const response = await $axios.$get(url);
+    // 配列で返ってくるのでJSONにして返却
+    console.log(response)
+    return {
+      posts: response
+    };
+  }
+};
+</script>
